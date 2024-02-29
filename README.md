@@ -192,7 +192,9 @@ Following are descriptions about some output files.
     <img src="images/gridfoqwithflag_meancalc.png" width="50%">
 
 - dotplot
+
     Lethargus duration dotplot of each group.
+    
     <img src="images/200519_rem5pek1_dotplot_fqlt_duration_all_.png" width="30%">
         
 
