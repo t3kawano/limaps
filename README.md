@@ -217,7 +217,7 @@ You have to eliminate the incorrect data for publication quality analysis.
 ## Author -->
 
 ## Reference
-Kawano, Taizo et al. “ER proteostasis regulators cell-non-autonomously control sleep.” Cell reports vol. 42,3 (2023): 112267. doi: 10.1016/j.celrep.2023.112267
+Kawano, Taizo et al. “ER proteostasis regulators cell-non-autonomously control sleep.” Cell reports vol. 42,3 (2023): 112267. https://doi.org/10.1016/j.celrep.2023.112267
 
 ## License
 MPL-2.0
