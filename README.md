@@ -194,8 +194,8 @@ Following are descriptions about some output files.
 - dotplot
 
     Lethargus duration dotplot of each group.
-    
-    <img src="images/200519_rem5pek1_dotplot_fqlt_duration_all_.png" width="30%">
+
+    <img src="images/200519_rem5pek1_dotplot_fqlt_duration_all_.png" width="20%">
         
 
 
