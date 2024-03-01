@@ -189,7 +189,7 @@ grouporder = "h"
 #grouporder = "v"
 
 
-uniquegroupnames = ["num1","num2","num3","num4","num5","num6","num7","num8"]
+#uniquegroupnames = ["num1","num2","num3","num4","num5","num6","num7","num8"]
 uniquegroupnames = ["n2","rem5","pek1","rem5pek1"]
 
 qapixthreash = 1

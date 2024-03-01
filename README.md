@@ -1,6 +1,6 @@
 # limaps
 
-<img src="images/limaps_ss.png" width="100%">
+<img src="images/limaps_ss_l.png" width="100%">
 
 
 ## Overview
