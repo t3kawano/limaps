@@ -13,7 +13,7 @@ A(sample) --> C[imcap_picam.py]
 C~~~|Image capture|C
 click C "https://github.com/t3kawano/imagecapture_picam" _blank
 
-subgraph Raspberry Pxi
+subgraph Raspberry Pi
 C 
 end
 
