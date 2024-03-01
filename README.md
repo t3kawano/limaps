@@ -1,6 +1,6 @@
 # limaps
 
-<img src="images/limaps_ss_l.png" width="100%">
+<img src="images/limaps_ss_l.png" width="80%">
 
 
 ## Overview
@@ -44,9 +44,9 @@ It calculate fraction of quiescence of the data produced by  [`imagesubtandmeasu
 Images obtained by [`imcap_picam.py`](https://github.com/t3kawano/imagecapture_picam) , and processed by [`imagesubtandmeasure.py`](https://github.com/t3kawano/imagesubtract_measure) are suitable input for this script.
 
 ## Requirement
-- python3
-- pandas
-- numpy
+- python 3.11.5
+- pandas 2.0.3
+- numpy 1.26.0
 - [`dotplot.py`](https://github.com/t3kawano/tkmodules/blob/1555f4af8eaff04b8e12ed82767d5f3547255a44/dotplot.py)
 
 ## Installation
