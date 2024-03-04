@@ -204,7 +204,7 @@ qapixthreash = 1
 #in this case from 1st to 2nd columns are initial group, 
 #3rd and 4th are another group and so on.
 gindex = [(1,2),(3,4),(5,6),(7,8)]
-#sgindex = [(1),(2),(3),(4),(5),(6),(7),(8)]
+gindex = [(1),(2),(3),(4),(5),(6),(7),(8)]
 
 #180309 above usr defined parameters has to be set
 
