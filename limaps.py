@@ -84,6 +84,9 @@ As mentioned above, the script sometimes fails lethargus detection,
 so these files contains incorrect data.
 You have to eliminate the incorrect data for publication quality analysis.    
 
+20240304
+    separate class files
+
 20200603
     qapixthreash to eliminate larvae contaminate
 20200206 
