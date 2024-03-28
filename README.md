@@ -47,6 +47,7 @@ Images obtained by [`imcap_picam.py`](https://github.com/t3kawano/imagecapture_p
 - python 3.11.5
 - pandas 2.0.3
 - numpy 1.26.0
+- matplotlib
 - [`dotplot.py`](https://github.com/t3kawano/tkmodules/blob/1555f4af8eaff04b8e12ed82767d5f3547255a44/dotplot.py)
 
 ## Installation
