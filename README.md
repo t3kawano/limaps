@@ -123,7 +123,7 @@ Following are descriptions about some output files.
 
 - date_groupname_experimentnumber_samplenumber_foq.png
 
-    Each sample's fractoin of q. gray line is area of moving object, black line is fraction of q. blue shaded area is lethargus detected by the script.
+    Each sample's fraction of q. gray line is area of moving object, black line is fraction of q. blue shaded area is lethargus detected by the script.
     
     <img src="images/200519_n2_1_1__foq.png" width="50%">
 

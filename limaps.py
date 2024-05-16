@@ -26,8 +26,8 @@ you should use your own program, excel or whatever you like.
 
 How to use
 Before run this script, Prepare .csv file using imagesubtandmeaaure.py
-Name the .csv file as "date_groupname_experimentnumber_interval.xls" format.
-e.g. 170719_oy59_1_2.xls
+Name the .csv file as "date_experimentname_experimentnumber_interval.xls" format.
+e.g. 170719_n2rem5comparison_1_2.xls
 
 Run this script. 
 It will show file choose dialog.
@@ -302,7 +302,8 @@ if targetfile.split("Result")[0]!="":
     filenameinfo = targetfile.split("/")[-1].split(targetextention)[0].split("_")
     thedate = filenameinfo[0]
     #240229 gropuname here is confusing. actually experiment name?
-    groupname = filenameinfo[1]
+    #240516 changed to experiment_name
+    experiment_name = filenameinfo[1]
     expnum = int(filenameinfo[2])
     #20180201 need in case that msec. also interval as float
     # msec interval suffix m. eg. 180201_n2_1_500m
@@ -313,7 +314,7 @@ if targetfile.split("Result")[0]!="":
         interval = float(filenameinfo[3])
         
 
-print("thedate: " + thedate + "\ngroupname: "+groupname+
+print("thedate: " + thedate + "\ngexperiment_name: "+experiment_name+
       "\nexpnum: "+ str(expnum)+"\ninterval: " + str(interval))
     
 df = pandas.read_csv(targetfile, sep= separater)
@@ -708,13 +709,13 @@ def plotgridfig(**kwargs):
 gridfig = plotgridfig(plotdata = "foq")
 
 picformat = ".png"
-filename = "_".join([thedate, groupname, "gridfoq", picformat])
+filename = "_".join([thedate, experiment_name, "gridfoq", picformat])
 figfilepath = os.path.join(targetdir,filename)
 gridfig.savefig(figfilepath,dpi=100)
 
 #240201 for svg format
 picformat = ".svg"
-filename = "_".join([thedate, groupname, "gridfoq", picformat])
+filename = "_".join([thedate, experiment_name, "gridfoq", picformat])
 figfilepath = os.path.join(targetdir,filename)
 gridfig.savefig(figfilepath,dpi=100)
 
@@ -826,7 +827,7 @@ gridfig = plotgridfig(overlayparam = "fq_duration",
 
 
 picformat = ".png"
-filename = "_".join([thedate, groupname, "gridfoqwithflag_meancalc", picformat])
+filename = "_".join([thedate, experiment_name, "gridfoqwithflag_meancalc", picformat])
 figfilepath = os.path.join(targetdir,filename)
 gridfig.savefig(figfilepath,dpi=100)
 
@@ -835,7 +836,7 @@ gridfig.savefig(figfilepath,dpi=100)
 picformat = ".svg"
 #filename = "_".join(["foqmarged_mean","marging",str(marginhr),
 #                     ugname, timesuff, picformat])
-filename = "_".join([thedate, groupname, "gridfoqwithflag_meancalc", picformat])
+filename = "_".join([thedate, experiment_name, "gridfoqwithflag_meancalc", picformat])
 figfilepath = os.path.join(targetdir,filename)
 gridfig.savefig(figfilepath,dpi=100)
 
@@ -868,7 +869,7 @@ dotplotfig.axes[0].set_ylabel(param)
 dotplotfig.tight_layout()
 
 picformat = ".png"
-filename = "_".join([thedate, groupname, "dotplot", param, "all", picformat])
+filename = "_".join([thedate, experiment_name, "dotplot", param, "all", picformat])
 figfilepath = os.path.join(targetdir,filename)
 dotplotfig.savefig(figfilepath,dpi=100)
 
@@ -877,7 +878,7 @@ dotplotfig.savefig(figfilepath,dpi=100)
 picformat = ".svg"
 #filename = "_".join(["foqmarged_mean","marging",str(marginhr),
 #                     ugname, timesuff, picformat])
-filename = "_".join([thedate, groupname, "dotplot", param, "all", picformat])
+filename = "_".join([thedate, experiment_name, "dotplot", param, "all", picformat])
 figfilepath = os.path.join(targetdir,filename)
 dotplotfig.savefig(figfilepath,dpi=100)
 
