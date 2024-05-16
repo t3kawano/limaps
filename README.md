@@ -53,7 +53,7 @@ Images obtained by [`imcap_picam.py`](https://github.com/t3kawano/imagecapture_p
 ## Installation
 Setup python3 environment.
 
-Put the `limaps.py` into somewhere on your computer.
+Put the `limaps.py` and `limaps_classes.py` into somewhere on your computer.
 
 if you want to see dotplot, get [`dotplot.py`](https://github.com/t3kawano/tkmodules/blob/1555f4af8eaff04b8e12ed82767d5f3547255a44/dotplot.py)  and put it into same folder with `limpas.py`
  
