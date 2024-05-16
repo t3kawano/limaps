@@ -4,7 +4,7 @@ import csv
 import matplotlib.pyplot as plt
 
 
-#Lethargus class. contains area and foq data of individual,
+#region Lethargus class. contains area and foq data of individual,
 # and calculate the lethargus measurement.
 #180226 meanquiescentout is not correct way if multiple lethargus are deteced
 class Lethargus:
@@ -162,6 +162,7 @@ class Lethargus:
 
         return outputdata
 
+#region Lethargusdetector
 #a kind of processor. when fed a Ind (contains area data),
 # it will spit where is the lethargus
 # self.ind.letharguslist = letharguslist
@@ -280,12 +281,13 @@ class Lethargusdetector:
 
 
     #################################################################
-    # Hayashi lab critera
-    # quiescence onset time was defined as a time point 
-    # after which the fractional quiescence remains > 0.05 for at least 60 minutes. 
-    # >0.2, 1.5 hours
-    # The quiescence exit time was defined as the time point 
-    # after which the fractional quiescence had reached < 0.1. (actually 0.05)
+    ## Hayashi lab critera (old; around 2018?)
+    ## quiescence onset time was defined as a time point 
+    ## after which the fractional quiescence remains > 0.05 for at least 60 minutes. 
+    ## The quiescence exit time was defined as the time point 
+    ## after which the fractional quiescence had reached < 0.1. 
+    # 
+    # currentry, 2024, use >0.2 foq >1.5 hr as default
     def detectlethargus1stscreen_fq(self, **kwargs):
     #def detectlethargus(_qbooleanvec, onsetcandidates, exitcandidates):
         #foq threashold to determine lethargus
@@ -301,11 +303,11 @@ class Lethargusdetector:
     #foq based or area rate based are defined by input arg _onsetcandidates etc.
     def detectlethargus2ndscreen(self, _qbooleanvec, _onsetcandidates,
                                  _exitcandidates, **kwargs):
-        #1h (3600 sec) need  lethargus duration, pre/post
         #20180123 changed to longer than 2hrs
         #continuouslength = int(2*60*60/self.interval)
         #20180223 may be 1.5?
         continuouslength = int(self.minduration*60*60/self.interval)
+        #need 1h (3600 sec) pre/post lethargus duration
         #pre and post requirments could be adjustable.
         prepostmargin = int(1*60*60/self.interval)
         if "prepostmargin" in kwargs:
@@ -574,7 +576,7 @@ ax.plot(sg.fullindlist[21].foq)
     
 """
 
-#Individual.calcrawarea =calcrawarea
+#region Individual.calcrawarea =calcrawarea
 
 class Individual:
     
@@ -796,7 +798,7 @@ class Individual:
             writer.writerows(zip(self.foq))
             
 
-
+#region Samplegroup
 class Samplegroup:   
     def __init__(self, _groupname, targetdir):
         #date_groupname_expnum format. may be need change to only groupname later?

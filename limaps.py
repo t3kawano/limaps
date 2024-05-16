@@ -25,18 +25,18 @@ For further analysis and figure preparation,
 you should use your own program, excel or whatever you like.
 
 How to use
-Before run this script, Prepare .xls file using imageJ's Multi measure function.
-Name the .xls file as "date_groupname_experimentnumber_interval.xls" format.
+Before run this script, Prepare .csv file using imagesubtandmeaaure.py
+Name the .csv file as "date_groupname_experimentnumber_interval.xls" format.
 e.g. 170719_oy59_1_2.xls
 
-Open Spyder and laps.py (this script).
-Run this script (click triangle or push F5). 
+Run this script. 
 It will show file choose dialog.
-Choose the .xls file you made.
+Choose the .csv file you made.
 The script read the file and shows foq graphs of each sample.
 
 In some case, it will detect multiple possible lethargus periods.
-You have to choose the one that most likely to be correct by clicking the graph.
+~~You have to choose the one that most likely to be correct by clicking the graph.~~
+(not using this? old function?)
 Also sometimes it mistakenly detect quiescent period as lethargus.
 You should always inspect the result by your eyes,
  and eliminate such data from further analysis.
@@ -84,6 +84,9 @@ As mentioned above, the script sometimes fails lethargus detection,
 so these files contains incorrect data.
 You have to eliminate the incorrect data for publication quality analysis.    
 
+20240516
+    fix some comments
+
 20240304
     separate class files
 
@@ -120,7 +123,7 @@ You have to eliminate the incorrect data for publication quality analysis.
     :sg.manualanalysis(1,764,6026)
     totalq 95 min
     qend + aduration 7372.0
-     ltend+inoutshift 6326
+    ltend+inoutshift 6326
     trim the lastrow data
     numberofbout 306
     qmean 18.61sec
@@ -165,18 +168,32 @@ import tkinter.filedialog
 
 import limaps_classes
 
+#region parameters 
 #180309 following usr defined parameters has to be set
-#from scipy import stats
+
 #171211 implemented foqthreshold. 
 #previously it was 0.05. 
 #0.2 seems gives consistent result? when use low mag 0.8x
 foqthreshold = 0.2
-#foqthreshold = 0.3#ire-1;pYH330 rescue?
+#foqthreshold = 0.3#ire-1;pYH330 rescue? -> still significant.seems ok
 #foqthreshold = 0.5#200214 0.5 to detect only high foq part of rem5
 #l3l4 24x hole use 0.05? rpi also 0.05 might better
 #foqthreshold = 0.05
 #foqthreshold = 0.02#221206 for cmc 1x1 olympus x2
 
+qapixthreash = 1
+
+#210618 for sfiwt 4x obj high mag, increase size detect as moving 800 is ok?
+#qapixthreash = 800
+
+#for aged HIS, to ignore larvae from old adult put some value here?
+#smaller animals tend affect much than bigger one... may not good for use?
+#qapixthreash = 50
+
+#240516 to change minimal duration of lethargus, 
+#change the minduration = 1.5 of class Samplegroup in limaps_classes.py
+
+#region experimental sample settings
 #180309 to handle an experiments contains multiple genotype..
 #in the future, set these info at imageprocessing part might be better.
 #6x8 config
@@ -193,26 +210,26 @@ rownum =6
 grouporder = "h"
 #grouporder = "v"
 
-
-#uniquegroupnames = ["num1","num2","num3","num4","num5","num6","num7","num8"]
 uniquegroupnames = ["n2","rem5","pek1","rem5pek1"]
+uniquegroupnames = ["s337","s338","s339","s340"]
+uniquegroupnames = ["rem5","s318_1","s318_2","s319_2",
+                    "s320_8","s326_1","s327_8","empty"]
 
-qapixthreash = 1
 
-#210618 for sfiwt 4x obj high mag, increase size detect as moving 800 is ok?
-#qapixthreash = 800
-
-#for aged HIS, to ignore larvae from old adult put some value here?
-#smaller animals tend affect much than bigger one... may not good for use?
-#qapixthreash = 50
 
 #in this case from 1st to 2nd columns are initial group, 
 #3rd and 4th are another group and so on.
 gindex = [(1,2),(3,4),(5,6),(7,8)]
-#sgindex = [(1),(2),(3),(4),(5),(6),(7),(8)]
+#gindex = [(1,2),(3),(4),(5),(6),(7,8)]
+#gindex = [(1,2),(3),(4),(5,6),(7,8)]
+gindex = [(1),(2),(3),(4),(5),(6),(7),(8)]
+#gindex = [(1),(2),(3),(4),(5),(6),(7,8)]
+#gindex = [(1),(2),(3),(4),(5,6),(7,8)]
+#gindex = [(1),(2),(3,4),(5,6),(7,8)]
 
 #180309 above usr defined parameters has to be set
 
+#region prep index
 #################################################################
 indexgrid = np.array(np.arange(colnum*rownum)+1).reshape(rownum,colnum)
 if grouporder == "h":
@@ -253,11 +270,11 @@ print(os.getcwd())
 tk = tkinter.Tk()
 tk.withdraw()
 
-# choose .xls (actually csv) file made by imagejs multi measuer
+# choose .csv file made by imagesubtandmeasure.py
 targetfile = tkinter.filedialog.askopenfilename()
 
 print("targetfile "+targetfile)
-#if the file is not .xls, stop the process
+#if the file is not .csv/xls stop the process
 
 targetdir = "/".join(targetfile.split("/")[0:-1])
 targetextention = ""
@@ -276,7 +293,7 @@ else:
         
 
 
-#the file named should have date_geynotype_interval format, use the info
+#the file name should have date_geynotype_interval format, use the info
 if targetfile.split("Result")[0]!="":
     #this format must concider bit more. "Result" may not included.
     #".xls" extension automaticcaly added at imagej.
@@ -437,6 +454,7 @@ totalq, let duration, transition #
 #sys.exit()
 
 
+#region sample group process
 
 samplegroups = []
 
