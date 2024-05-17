@@ -28,11 +28,6 @@ click S "https://github.com/t3kawano/imagesubtract_measure" _blank
 click L "https://github.com/t3kawano/limaps" _blank
 end
 
-%%S~~~|recover sample of interest|S
-%%OUT -.-> S
-%%OUT -. recover sample of interest .-> S
-%%OUT~~~X 
-%%~~~ Y
 
 ```
 
