@@ -29,6 +29,7 @@ Before run this script, Prepare .csv file using imagesubtandmeaaure.py
 Name the .csv file as "date_experimentname_experimentnumber_interval.xls" format.
 e.g. 170719_n2rem5comparison_1_2.xls
 
+Put limaps.py and limaps_classes.py (and dotplot.py, if you want) into a folder.
 Run this script. 
 It will show file choose dialog.
 Choose the .csv file you made.
@@ -210,16 +211,16 @@ grouporder = "h"
 #grouporder = "v"
 
 uniquegroupnames = ["n2","rem5","pek1","rem5pek1"]
-uniquegroupnames = ["s337","s338","s339","s340"]
 uniquegroupnames = ["rem5","s206_3_3","s324_7","s324_11",
                     "s326_8","empty"]
+uniquegroupnames = ["s337","s338","s339","s340"]
 
 
 
 #in this case from 1st to 2nd columns are initial group, 
 #3rd and 4th are another group and so on.
 gindex = [(1,2),(3,4),(5,6),(7,8)]
-gindex = [(1,2),(3,4),(5),(6),(7),(8)]
+#gindex = [(1,2),(3,4),(5),(6),(7),(8)]
 #gindex = [(1,2),(3),(4),(5),(6),(7,8)]
 #gindex = [(1,2),(3),(4),(5,6),(7,8)]
 #gindex = [(1),(2),(3),(4),(5),(6),(7),(8)]
