@@ -205,9 +205,8 @@ Following are descriptions about some output files.
     .pkl file containing data made by the script. You may use it for further analysis.
 
 
-As mentioned above, the script sometimes fails lethargus detection,
-so these files may contains incorrect data.
-You have to eliminate the incorrect data for publication quality analysis.    
+The script may fail to detect lethargus correctly.
+You have to be careful to use such data for analysis.
 
 
 

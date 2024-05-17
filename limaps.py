@@ -34,12 +34,6 @@ It will show file choose dialog.
 Choose the .csv file you made.
 The script read the file and shows foq graphs of each sample.
 
-In some case, it will detect multiple possible lethargus periods.
-~~You have to choose the one that most likely to be correct by clicking the graph.~~
-(not using this? old function?)
-Also sometimes it mistakenly detect quiescent period as lethargus.
-You should always inspect the result by your eyes,
- and eliminate such data from further analysis.
 
 The script outputs following files.
 
@@ -80,11 +74,10 @@ The script outputs following files.
 7. date_groupname_experimentnumber__fqlt_df.csv
     foq table during lethargus +- 1hr
     
-As mentioned above, the script sometimes fails lethargus detection,
-so these files contains incorrect data.
-You have to eliminate the incorrect data for publication quality analysis.    
+The script may fail to detect lethargus correctly,
+You have to be careful to use such data for analysis.    
 
-20240516
+20240517
     fix some comments
 
 20240304
