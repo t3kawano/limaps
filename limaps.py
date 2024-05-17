@@ -151,6 +151,12 @@ You have to eliminate the incorrect data for publication quality analysis.
 20170807 ver.1.1 handle .csv as well
 20170720 ver.1
 
+#need to comment out following lines to use other env before upload.
+#dont forget!!
+#sys.path.append(os.path.join(os.path.dirname(__file__), 
+#                                "..","tkmodules"))
+
+
 """
 
 import os
@@ -212,17 +218,18 @@ grouporder = "h"
 
 uniquegroupnames = ["n2","rem5","pek1","rem5pek1"]
 uniquegroupnames = ["s337","s338","s339","s340"]
-uniquegroupnames = ["rem5","s318_1","s318_2","s319_2",
-                    "s320_8","s326_1","s327_8","empty"]
+uniquegroupnames = ["rem5","s206_3_3","s324_7","s324_11",
+                    "s326_8","empty"]
 
 
 
 #in this case from 1st to 2nd columns are initial group, 
 #3rd and 4th are another group and so on.
 gindex = [(1,2),(3,4),(5,6),(7,8)]
+gindex = [(1,2),(3,4),(5),(6),(7),(8)]
 #gindex = [(1,2),(3),(4),(5),(6),(7,8)]
 #gindex = [(1,2),(3),(4),(5,6),(7,8)]
-gindex = [(1),(2),(3),(4),(5),(6),(7),(8)]
+#gindex = [(1),(2),(3),(4),(5),(6),(7),(8)]
 #gindex = [(1),(2),(3),(4),(5),(6),(7,8)]
 #gindex = [(1),(2),(3),(4),(5,6),(7,8)]
 #gindex = [(1),(2),(3,4),(5,6),(7,8)]
