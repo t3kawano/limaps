@@ -853,8 +853,8 @@ gridfig.savefig(figfilepath,dpi=100)
 # In the readme.md on git, suggesting that 
 # put dotplot.py in the same directory.
 # so this line is only for my devlopment env.
-sys.path.append(os.path.join(os.path.dirname(__file__), 
-                                "..","tkmodules"))
+#sys.path.append(os.path.join(os.path.dirname(__file__), 
+#                                "..","tkmodules"))
 #import importlib
 #importlib.reload(dotplot)
 import dotplot
