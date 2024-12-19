@@ -28,11 +28,6 @@ click S "https://github.com/t3kawano/imagesubtract_measure" _blank
 click L "https://github.com/t3kawano/limaps" _blank
 end
 
-%%S~~~|recover sample of interest|S
-%%OUT -.-> S
-%%OUT -. recover sample of interest .-> S
-%%OUT~~~X 
-%%~~~ Y
 
 ```
 
@@ -47,12 +42,13 @@ Images obtained by [`imcap_picam.py`](https://github.com/t3kawano/imagecapture_p
 - python 3.11.5
 - pandas 2.0.3
 - numpy 1.26.0
+- matplotlib
 - [`dotplot.py`](https://github.com/t3kawano/tkmodules/blob/1555f4af8eaff04b8e12ed82767d5f3547255a44/dotplot.py)
 
 ## Installation
 Setup python3 environment.
 
-Put the `limaps.py` into somewhere on your computer.
+Put the `limaps.py` and `limaps_classes.py` into somewhere on your computer.
 
 if you want to see dotplot, get [`dotplot.py`](https://github.com/t3kawano/tkmodules/blob/1555f4af8eaff04b8e12ed82767d5f3547255a44/dotplot.py)  and put it into same folder with `limpas.py`
  
@@ -122,7 +118,7 @@ Following are descriptions about some output files.
 
 - date_groupname_experimentnumber_samplenumber_foq.png
 
-    Each sample's fractoin of q. gray line is area of moving object, black line is fraction of q. blue shaded area is lethargus detected by the script.
+    Each sample's fraction of q. gray line is area of moving object, black line is fraction of q. blue shaded area is lethargus detected by the script.
     
     <img src="images/200519_n2_1_1__foq.png" width="50%">
 
@@ -204,9 +200,8 @@ Following are descriptions about some output files.
     .pkl file containing data made by the script. You may use it for further analysis.
 
 
-As mentioned above, the script sometimes fails lethargus detection,
-so these files may contains incorrect data.
-You have to eliminate the incorrect data for publication quality analysis.    
+The script may fail to detect lethargus correctly.
+You have to be careful to use such data for analysis.
 
 
 
