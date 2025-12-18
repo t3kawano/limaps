@@ -78,6 +78,10 @@ The script outputs following files.
 The script may fail to detect lethargus correctly,
 You have to be careful to use such data for analysis.    
 
+20251217
+    use subprocess for file choose dialog, instead of tkinter
+    written by gptoss120B
+
 20240517
     fix some comments
 
@@ -163,8 +167,11 @@ import pandas
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
-import tkinter
-import tkinter.filedialog
+#import tkinter
+#import tkinter.filedialog
+from pathlib import Path
+import subprocess
+
 
 import limaps_classes
 
@@ -261,16 +268,85 @@ print(str(datetime.datetime.today()))
 print(os.getcwd())
 
 
-# file choose dialog
+# 251217 macos29 tkinter bug getting severe
+# so use subprocess 
+# tkinter file choose dialog
+"""
 tk = tkinter.Tk()
 tk.withdraw()
 
 # choose .csv file made by imagesubtandmeasure.py
 targetfile = tkinter.filedialog.askopenfilename()
+"""
 
-print("targetfile "+targetfile)
+# 251217 subprocess version file chooser written by gptoss120B
+def _mac_file(prompt: str) -> str | None:
+    """AppleScript‑based file chooser (macOS). Returns a POSIX path or None."""
+    script = f'''
+        try
+            set theFile to choose file with prompt "{prompt}"
+            POSIX path of theFile
+        on error number -128          -- Cancel pressed
+            return "CANCELLED"
+        end try
+    '''
+    try:
+        out = subprocess.check_output(["osascript", "-e", script], text=True)
+    except subprocess.CalledProcessError:
+        return None
+    txt = out.strip()
+    return None if txt == "CANCELLED" else txt
+
+
+def _win_file(prompt: str) -> str | None:
+    """PowerShell file chooser (Windows). Returns a Windows path or None."""
+    ps = f'''
+        Add-Type -AssemblyName System.Windows.Forms
+        $f  = New-Object System.Windows.Forms.OpenFileDialog
+        $f.Title = "{prompt}"
+        $f.InitialDirectory = [Environment]::GetFolderPath('Desktop')
+        $f.Filter = "All Files (*.*)|*.*"
+        if ($f.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {{
+            Write-Output $f.FileName
+        }} else {{
+            Write-Output "CANCELLED"
+        }}
+    '''
+    try:
+        out = subprocess.check_output(
+            ["powershell", "-NoProfile", "-Command", ps],
+            text=True,
+        )
+    except subprocess.CalledProcessError:
+        return None
+    txt = out.strip()
+    return None if txt == "CANCELLED" else txt
+
+
+def file_chooser(prompt: str = "Select a file") -> str:
+    """
+    Cross‑platform (macOS + Windows) native file‑selection dialog.
+    Returns the selected path as a string or the literal "break" when cancelled.
+    """
+    if sys.platform.startswith("darwin"):
+        raw = _mac_file(prompt)
+    elif sys.platform.startswith(("win", "cygwin")):
+        raw = _win_file(prompt)
+    else:
+        raise OSError("Unsupported OS – only macOS and Windows are supported.")
+
+    return "break" if raw is None else str(Path(raw))
+
+
+
+targetfile = file_chooser("Choose a .csv file")
+if targetfile == "break":
+    print("Cancelled") 
+else:
+    print(f"Selected: {targetfile}")
+
+
 #if the file is not .csv/xls stop the process
-
 targetdir = "/".join(targetfile.split("/")[0:-1])
 targetextention = ""
 separater = ""
